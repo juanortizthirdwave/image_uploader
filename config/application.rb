@@ -22,6 +22,6 @@ module ImageUploader
     Paperclip.options[:command_path] = "/usr/local/bin/"
     Paperclip::Attachment.default_options[:url] = "/assets/galleries/:id/:style/:basename.:extension"
     Paperclip::Attachment.default_options[:path] = ":rails_root/public/assets/galleries/:id/:style/:basename.:extension"
-    puts "**********\n\n\n DEFAULT OPTIONS: \n\n\n#{Paperclip::Attachment.default_options}\n\n\n**********"
+    # puts "**********\n\n\n DEFAULT OPTIONS: \n\n\n#{Paperclip::Attachment.default_options}\n\n\n**********"
   end
 end
