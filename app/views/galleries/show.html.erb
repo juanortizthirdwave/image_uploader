@@ -1,0 +1,35 @@
+<h1><%= @gallery.name %> Gallery</h1>
+
+
+<%= form_for @image, :url => gallery_path(@gallery.id), :method => :patch, :html => { :multipart => true } do |form| %>
+  <%= form.file_field :picture %>
+  <%= form.submit "Upload file" %>
+<% end %>
+
+
+<br><br>
+<% if @gallery.images.count > 0 %>
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Thumbnail</td>
+        <td>Name</td>
+        <td>Size</td>
+        <td>Content Type</td>
+        <td>Updated At</td>
+      </tr>
+    </thead>
+      <% @gallery.images.each do |image| %>
+       <tr> 
+        <td><%= image_tag image.picture.url(:thumb) %></td>
+        <td><%= image.picture_file_name %></td>
+        <td><%= image.picture_file_size %></td>
+        <td><%= image.picture_content_type %></td>
+        <td><%= image.picture_updated_at %></td>
+       </tr>
+      <% end %>
+  </table>
+<% end %>
+
+<%= link_to "<< Galleries", galleries_path %>
+<%#= debug params %>
