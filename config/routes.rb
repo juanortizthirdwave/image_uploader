@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'fields/update'
+
   resources :galleries do
     resources :images
   end

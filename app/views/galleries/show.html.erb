@@ -17,6 +17,8 @@
         <td>Size</td>
         <td>Content Type</td>
         <td>Updated At</td>
+        <td>Edit</td>
+        <td>Disply Image Content</td>
       </tr>
     </thead>
       <% @gallery.images.each do |image| %>
@@ -26,6 +28,8 @@
         <td><%= image.picture_file_size %></td>
         <td><%= image.picture_content_type %></td>
         <td><%= image.picture_updated_at %></td>
+        <td><%= link_to("EDIT", edit_gallery_image_path(@gallery, image)) %></td>
+        <td><%= link_to("DISPLAY", gallery_image_path(@gallery, image)) %></td>
        </tr>
       <% end %>
   </table>
