@@ -15,8 +15,8 @@ class ImagesController < ApplicationController
 
   def update
     @gallery = @image.gallery
-    @field = Field.new(field_params)
-    @image.fields << @field
+    @field = Field.where(field_params).first_or_create
+    @image.field_ids << @field.id
 
     redirect_to gallery_image_path @gallery, @image
   end
