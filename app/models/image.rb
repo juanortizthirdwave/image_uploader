@@ -1,11 +1,13 @@
 class Image < ActiveRecord::Base
-
-  # has_many :fields
+  cattr_accessor(:field_ids) { Array.new }
   belongs_to :gallery
+  has_paper_trail
+  serialize :field_ids, Array
   has_attached_file :picture, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  # this is for the demos app, check if you should uncomment this line or add a validation
   do_not_validate_attachment_file_type :picture 
-  serialize :field_ids
 
-  has_paper_trail# :skip => [:gallery_id, :picture_file_name, :picture_content_type, :picture_file_size, :picture_updated_at]
+  def fields
+    return self.field_ids if self.field_ids.empty?
+    self.field_ids.map { |e| Field.find e }
+  end
 end
