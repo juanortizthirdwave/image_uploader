@@ -17,6 +17,7 @@ class ImagesController < ApplicationController
     @gallery = @image.gallery
     @field = Field.where(field_params).first_or_create
     @image.field_ids << @field.id
+    @image.save
 
     redirect_to gallery_image_path @gallery, @image
   end
