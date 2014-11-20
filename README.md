@@ -1,7 +1,7 @@
 Images Uploader
 ===============
 
-In this branch, our `Image` model has a `field_ids` array of id's of `Field` objects. This array is serialized and stored in the database. Therefore, the fields associated with our image can be tracked along the different versions of the object.  
+In this branch, our `Image` model has a `field_ids` array. This array stores the id's of `Field` objects associated with our image. This array is serialized and stored in the database. Therefore, the fields associated with our image can be tracked along the different versions of the object.  
 ```ruby
  create_table "images", force: true do |t|
     t.integer  "gallery_id"
@@ -9,7 +9,7 @@ In this branch, our `Image` model has a `field_ids` array of id's of `Field` obj
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
-    t.text     "field_ids"   # storing the id's of the associated objects
+    t.text     "field_ids"   # storing the id's of the associated fields
     
     # timestamps ...
   end
