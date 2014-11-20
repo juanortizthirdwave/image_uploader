@@ -1,0 +1,54 @@
+<h1>Edit Image</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>Thumbnail</td>
+      <td>Name</td>
+      <td>Size</td>
+      <td>Content Type</td>
+      <td>Updated At</td>
+      <% @image.fields.each do |field| %>
+        <td><%= field.name %></td>
+      <% end %>
+    </tr>
+  </thead>
+     <tr> 
+      <td><%= image_tag @image.picture.url(:thumb) %></td>
+      <td><%= @image.picture_file_name %></td>
+      <td><%= @image.picture_file_size %></td>
+      <td><%= @image.picture_content_type %></td>
+      <td><%= @image.picture_updated_at %></td>
+      <% @image.fields.each do |field| %>
+        <td><%= field.value %></td>
+      <% end %>
+     </tr>
+</table>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>Versions</td>
+    </tr>
+  </thead>
+    <% @versions.each do |v| %>
+     <tr> 
+        <td><%= v.created_at.strftime("%m-%e-%y %H:%M") %></td>
+     </tr>
+    <% end %>
+</table>
+
+
+
+<%= form_for @image, url: { action: "update"} do |i| %>
+  <%= i.fields_for :field do |f| %>
+    <%= f.label :name, "Custom Attribute" %>
+    <%= f.text_field :name %>
+
+    <%= f.label :value %>
+    <%= f.text_field :value %>
+  <% end %>
+  <%= i.submit "Create new field" %>
+<% end %>
+<br/>
+<%= link_to "Home", root_path %>
