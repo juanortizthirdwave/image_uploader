@@ -11,8 +11,8 @@ class GalleriesController < ApplicationController
   def update
     @gallery = Gallery.find(params[:id])
     @image = Image.new(image_params)
-    @image.save!
     @gallery.images << @image
+    
     redirect_to @gallery
   end
 

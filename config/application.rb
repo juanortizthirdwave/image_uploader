@@ -23,5 +23,6 @@ module ImageUploader
     Paperclip::Attachment.default_options[:url] = "/assets/galleries/:id/:style/:basename.:extension"
     Paperclip::Attachment.default_options[:path] = ":rails_root/public/assets/galleries/:id/:style/:basename.:extension"
     # puts "**********\n\n\n DEFAULT OPTIONS: \n\n\n#{Paperclip::Attachment.default_options}\n\n\n**********"
+    config.time_zone = 'Central Time (US & Canada)'
   end
 end

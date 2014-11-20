@@ -10,11 +10,12 @@ class ImagesController < ApplicationController
 
   def edit
     @field = Field.new
+    @versions = @image.versions
   end
 
   def update
     @gallery = @image.gallery
-    @field = Field.create!(field_params)
+    @field = Field.new(field_params)
     @image.fields << @field
 
     redirect_to gallery_image_path @gallery, @image
