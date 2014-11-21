@@ -10,6 +10,9 @@ RSpec.describe PaperTrail::Version, :type => :model do
 
     it 'creates a new version object', :versioning => true do
       expect(@image.versions.count).to eq(2)
+    end
+
+    it 'returns the updated field_ids' do
       expect(@image.field_ids).to eq([5])
     end
 
@@ -18,6 +21,10 @@ RSpec.describe PaperTrail::Version, :type => :model do
         @image.field_ids << 7
         @image.save
         @old_image = @image.previous_version
+      end
+
+      it 'creates another version of the object', :versioning => true do
+        expect(@image.versions.count).to eq(3)
       end
 
       it 'checking previous version gives the right value ', :versioning => true do
