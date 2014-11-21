@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120165725) do
+ActiveRecord::Schema.define(version: 20141121160736) do
 
   create_table "fields", force: true do |t|
-    t.string  "name"
-    t.string  "value"
-    t.integer "image_id"
+    t.string "name"
+    t.string "value"
   end
 
   create_table "galleries", force: true do |t|
