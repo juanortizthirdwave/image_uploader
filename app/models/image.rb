@@ -1,5 +1,4 @@
 class Image < ActiveRecord::Base
-  cattr_accessible :custom_fields { Hash.new }
   belongs_to :gallery
   has_attached_file :picture, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   serialize :custom_fields, Hash
