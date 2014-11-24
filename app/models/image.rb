@@ -1,8 +1,12 @@
 class Image < ActiveRecord::Base
   belongs_to :gallery
   serialize :field_ids, Array
+
+  # ********* image uploader **********
   has_attached_file :picture, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   do_not_validate_attachment_file_type :picture 
+
+  # ********* versioning image ********
   has_paper_trail
 
   def fields
