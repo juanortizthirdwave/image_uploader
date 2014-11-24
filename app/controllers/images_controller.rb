@@ -6,18 +6,18 @@ class ImagesController < ApplicationController
   end
 
   def show
+    p @image.reload.fields
   end
 
   def edit
-    @field = Field.new
     @versions = @image.versions
   end
 
   def update
     @gallery = @image.gallery
-    @field = Field.new(field_params)
-    @image.fields << @field
-
+    field = {field_params[:name].to_sym => field_params[:value]}
+    @image.fields.merge! field
+    @image.save
     redirect_to gallery_image_path @gallery, @image
   end
 
