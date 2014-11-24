@@ -8,8 +8,8 @@
       <td>Size</td>
       <td>Content Type</td>
       <td>Updated At</td>
-      <% @image.fields.each do |field| %>
-        <td><%= field.name %></td>
+      <% @image.fields.keys.each do |key| %>
+        <td><%= key %></td>
       <% end %>
     </tr>
   </thead>
@@ -19,8 +19,8 @@
       <td><%= @image.picture_file_size %></td>
       <td><%= @image.picture_content_type %></td>
       <td><%= @image.picture_updated_at %></td>
-      <% @image.fields.each do |field| %>
-        <td><%= field.value %></td>
+      <% @image.fields.values.each do |value| %>
+        <td><%= value %></td>
       <% end %>
      </tr>
 </table>
