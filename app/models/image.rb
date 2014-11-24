@@ -7,7 +7,7 @@ class Image < ActiveRecord::Base
   do_not_validate_attachment_file_type :picture 
 
   # ********* versioning image ********
-  has_paper_trail
+  has_paper_trail :skip => [:gallery_id, :picture_file_name, :picture_content_type, :picture_file_size, :picture_updated_at]
 
   def fields
     return field_ids if field_ids.empty?
