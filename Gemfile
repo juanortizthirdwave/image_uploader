@@ -42,6 +42,10 @@ gem 'pry-byebug', group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Performance test
+gem 'rails-perftest'
+gem 'ruby-prof'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
