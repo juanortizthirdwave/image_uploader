@@ -1,8 +1,4 @@
-require 'rails_helper'
-
-RSpec.describe Image, :type => :model do
-  context "adding field_ids values and saving" do
-    before do
+require "../../config/environment.rb"
 
 # profiling with GC.stat
     GC.start
@@ -26,11 +22,3 @@ RSpec.describe Image, :type => :model do
     results << "malloc increase: #{malloc_increase}\n**************\n\n\n"
 
     File.open('stats.txt', 'a') { |f| f.write(results) }
-    end
-
-    it "when retrieving the image from the database" do
-      id = @image.id
-      expect(Image.find(id).field_ids).to eq([5])
-    end
-  end
-end
