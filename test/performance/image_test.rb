@@ -6,7 +6,7 @@ class ImageModelTest < ActionDispatch::PerformanceTest
   # self.profile_options = { runs: 5, metrics: [:wall_time, :memory],
   #                          output: 'tmp/performance', formats: [:flat] }
 
-
+  self.profile_options = { runs: 1 }
 
 
 
@@ -25,18 +25,23 @@ class ImageModelTest < ActionDispatch::PerformanceTest
     @image.save
 
     # profiling with  GC:Profiler
-    # p GC::Profiler.report
+    # report = GC::Profiler.result
     # GC::Profiler.disable
+    # results = "**************\nHash with Image random attributes\n"
+    # results << report
+    # results << "\n**************\n\n\n"
 
-    # profiling with GC.stat
+    # # profiling with GC.stat
     after_test = GC.stat
     total_allocated_object = after_test[:total_allocated_object] - before_test[:total_allocated_object] 
     oldmalloc_increase = after_test[:oldmalloc_increase] - before_test[:oldmalloc_increase] 
     malloc_increase = after_test[:malloc_increase] - before_test[:malloc_increase] 
 
-    puts "**************\nTotal allocated objects: #{total_allocated_object}"
-    puts "oldmalloc_increase: #{oldmalloc_increase}"
-    puts "malloc increase: #{malloc_increase}\n**************"
+    results = "**************\nHash with Image random attributes\nTotal allocated objects: #{total_allocated_object}\n"
+    results << "oldmalloc_increase: #{oldmalloc_increase}\n"
+    results << "malloc increase: #{malloc_increase}\n**************\n\n\n"
+
+    File.open('stats.txt', 'a') { |f| f.write(results) }
   end
 
 
