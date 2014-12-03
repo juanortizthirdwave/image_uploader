@@ -43,6 +43,7 @@ gem 'pry-byebug', group: :development
 # gem 'debugger', group: [:development, :test]
 
 # Performance test
+gem 'benchmark-ips'
 gem 'rails-perftest'
 gem 'ruby-prof'
 
