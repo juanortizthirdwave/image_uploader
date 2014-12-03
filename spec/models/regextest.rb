@@ -1,2 +1,0 @@
-p "/news/206-afc-news-2014/957-afc-commemorates-world-aids-day-with-new-website-world-of-chocolate-and-more".sub(/^\/([^\/]*)(?:\/[^\/]*)?\/(\d+)-.*$/, '/page/\1?id=\2')
-p "/jobs-desc/955-human-resources-coordinator".sub(/^\/([^\/]*)(?:\/[^\/]*)?\/(\d+)-.*$/, '/page/\1?id=\2')
