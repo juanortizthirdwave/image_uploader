@@ -37,7 +37,6 @@ RSpec.describe Image, :type => :model do
 
   context "adding field_ids values and saving" do
     before do
-      report = ""
       Benchmark.ips do |x|
         report = x.report("field-model-association") do
           field = Field.create(name: "City", value: "Chicago")
@@ -51,12 +50,39 @@ RSpec.describe Image, :type => :model do
       end
       
 
-      File.open('stats.txt', 'a') { |f| f.write(report) }
+      # File.open('stats.txt', 'a') { |f| f.write(report) }
     end
 
     it "when retrieving the image from the database" do
       id = @image.id
       expect(Image.find(id).field_ids).to eq([Field.last.id])
+    end
+  end
+
+  context "adding 100 field_ids values and saving" do
+    before do
+      Benchmark.ips do |x|
+        report = x.report("field-model-association-50-fields") do
+
+          @image = Image.create
+          (1..50).each do |n|
+            field = Field.create(name: "name#{n}", value: "value#{n}")
+
+            @image.field_ids << field.id
+          end
+          @image.save
+
+          retrieve_fields = @image.fields
+        end
+      end
+      
+
+      # File.open('stats.txt', 'a') { |f| f.write(report) }
+    end
+
+    it "when retrieving the image from the database" do
+      id = @image.id
+      expect(@image.class).to eq(Image)
     end
   end
 end
