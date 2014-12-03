@@ -1,0 +1,30 @@
+
+
+Calculating -------------------------------------
+field-model-association
+                        40.000  i/100ms
+-------------------------------------------------
+field-model-association
+                        406.965  (± 3.2%) i/s -      2.040k
+
+Calculating -------------------------------------
+field-model-association-50-fields
+                         2.000  i/100ms
+-------------------------------------------------
+field-model-association-50-fields
+                         29.804  (± 3.4%) i/s -    150.000
+
+
+
+Calculating -------------------------------------
+  hash-serialization    57.000  i/100ms
+-------------------------------------------------
+  hash-serialization    558.382  (± 4.7%) i/s -      2.793k
+
+
+Calculating -------------------------------------
+hash-serialization-50-fields
+                        27.000  i/100ms
+-------------------------------------------------
+hash-serialization-50-fields
+                        283.324  (± 3.9%) i/s -      1.431k

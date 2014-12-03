@@ -32,9 +32,8 @@ RSpec.describe Image, :type => :model do
 
   context "adding field_ids values and saving" do
     before do
-      report = ""
       Benchmark.ips do |x|
-        report = x.report("hash-serialization") do
+        x.report("hash-serialization") do
 
           @image = Image.create
           @image.fields.merge! city: "Chicago"
@@ -44,13 +43,36 @@ RSpec.describe Image, :type => :model do
         end
       end
       
-
-      File.open('stats.txt', 'a') { |f| f.write(report) }
+      # File.open('stats.txt', 'a') { |f| f.write(report) }
     end
 
     it "when retrieving the image from the database" do
       id = @image.id
       expect(Image.find(id).fields[:city]).to eq("Chicago")
+    end
+  end
+
+  context "adding 50 field_ids values and saving" do
+    before do
+      Benchmark.ips do |x|
+        x.report("hash-serialization-50-fields") do
+
+          @image = Image.create
+          (1..50).each do |n|
+            @image.fields.merge! "city#{n}".to_sym => "Chicago#{n}"
+          end
+          @image.save
+
+          retrieved_field = @image.fields
+        end
+      end
+      
+      # File.open('stats.txt', 'a') { |f| f.write(report) }
+    end
+
+    it "when retrieving the image from the database" do
+      id = @image.id
+      expect(Image.find(id).fields[:city1]).to eq("Chicago1")
     end
   end
 end
