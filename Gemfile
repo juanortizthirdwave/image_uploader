@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'paper_trail', '~> 3.0.6'
 
 gem "paperclip", "~> 4.2"
+gem 'aws-sdk'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
