@@ -19,10 +19,19 @@ module ImageUploader
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    Paperclip.options[:command_path] = "/usr/local/bin/"
-    Paperclip::Attachment.default_options[:url] = "/assets/galleries/:id/:style/:basename.:extension"
-    Paperclip::Attachment.default_options[:path] = ":rails_root/public/assets/galleries/:id/:style/:basename.:extension"
+    # Paperclip.options[:command_path] = "/usr/local/bin/"
+    Paperclip::Attachment.default_options[:url] = "rails-image-uploader-test.s3.amazonaws.com"
+    Paperclip::Attachment.default_options[:path] = "/galleries/:id/:style/:basename.:extension"
     # puts "**********\n\n\n DEFAULT OPTIONS: \n\n\n#{Paperclip::Attachment.default_options}\n\n\n**********"
+    
     config.time_zone = 'Central Time (US & Canada)'
+
+
+    config.before_configuration do
+      env_file = File.join(Rails.root, 'config', 'local_env.yml')
+      YAML.load(File.open(env_file)).each do |key, value|
+        ENV[key.to_s] = value
+      end if File.exists?(env_file)
+    end
   end
 end
